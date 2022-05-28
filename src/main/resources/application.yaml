@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/sample
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: password
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
