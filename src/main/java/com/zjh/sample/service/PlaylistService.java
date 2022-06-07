@@ -3,12 +3,13 @@ package com.zjh.sample.service;
 import com.zjh.sample.dto.PlaylistDTO;
 import com.zjh.sample.entity.Playlist;
 import com.zjh.sample.repository.PlaylistRepository;
+import com.zjh.sample.vo.PlaylistCreateVO;
 import com.zjh.sample.vo.PlaylistQueryVO;
 import com.zjh.sample.vo.PlaylistUpdateVO;
-import com.zjh.sample.vo.PlaylistVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -19,11 +20,11 @@ public class PlaylistService {
     @Autowired
     private PlaylistRepository playlistRepository;
 
-    public Integer save(PlaylistVO vO) {
+    public ResponseEntity save(PlaylistCreateVO vO) {
         Playlist bean = new Playlist();
         BeanUtils.copyProperties(vO, bean);
         bean = playlistRepository.save(bean);
-        return bean.getPlaylistId();
+        return ResponseEntity.ok().body(bean);
     }
 
     public void delete(Integer id) {

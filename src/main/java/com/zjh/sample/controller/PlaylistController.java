@@ -2,6 +2,7 @@ package com.zjh.sample.controller;
 
 import com.zjh.sample.dto.PlaylistDTO;
 import com.zjh.sample.service.PlaylistService;
+import com.zjh.sample.vo.PlaylistCreateVO;
 import com.zjh.sample.vo.PlaylistQueryVO;
 import com.zjh.sample.vo.PlaylistUpdateVO;
 import com.zjh.sample.vo.PlaylistVO;
@@ -9,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +28,8 @@ public class PlaylistController {
 
     @PostMapping
     @ApiOperation("Save ")
-    public String save(@Valid @RequestBody PlaylistVO vO) {
-        return playlistService.save(vO).toString();
+    public ResponseEntity save(@Valid @RequestBody PlaylistCreateVO vO) {
+        return playlistService.save(vO);
     }
 
     @DeleteMapping("/{id}")
