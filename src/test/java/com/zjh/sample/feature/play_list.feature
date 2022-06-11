@@ -1,4 +1,4 @@
-Feature:
+Feature: playList
   Background: Test play list
 
     Scenario: Create a new media type
