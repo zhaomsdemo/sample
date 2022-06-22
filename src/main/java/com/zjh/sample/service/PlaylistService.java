@@ -6,8 +6,10 @@ import com.zjh.sample.repository.PlaylistRepository;
 import com.zjh.sample.vo.PlaylistCreateVO;
 import com.zjh.sample.vo.PlaylistQueryVO;
 import com.zjh.sample.vo.PlaylistUpdateVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
 
 @Service
+@Slf4j
 public class PlaylistService {
 
     @Autowired
@@ -37,6 +40,7 @@ public class PlaylistService {
         playlistRepository.save(bean);
     }
 
+    @Cacheable("PlayLists")
     public PlaylistDTO getById(Integer id) {
         Playlist original = requireOne(id);
         return toDTO(original);
@@ -53,7 +57,8 @@ public class PlaylistService {
     }
 
     private Playlist requireOne(Integer id) {
-        return playlistRepository.findById(id)
+        log.info("Getting PlayList by Id {}", id);
+        return playlistRepository.findByPlaylistId(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }
 }

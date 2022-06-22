@@ -1,4 +1,4 @@
-package com.zjh.sample;
+package com.zjh.sample.feature;
 
 import com.intuit.karate.junit5.Karate;
 

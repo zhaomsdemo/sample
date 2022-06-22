@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h://localhost:3306/sample_test
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: password
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: create
